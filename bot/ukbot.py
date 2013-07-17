@@ -1159,8 +1159,8 @@ class UK(object):
                 if cnt >= 10:
                     break
 
-        if now < xt[-1]:
-            ax.axvline(now, color='red')
+        if now < xt[-1]: #showing vertical line telling day when plot was updated
+            ax.axvline(now, color='black')
 
         ax.set_xticks(xt, minor=False)
         ax.set_xticklabels([], minor=False)
@@ -1168,8 +1168,12 @@ class UK(object):
         ax.set_xticks(xt_mid, minor=True)
         if ndays == 7:
             ax.set_xticklabels(['Man', 'Tir', 'Ons', 'Tors', 'Fre', 'Lør', 'Søn'], minor=True)
-        elif ndays == 14:
+        if ndays == 14:
             ax.set_xticklabels(['Man', '', 'Ons', '', 'Fre', '', 'Søn', '', 'Tir', '', 'Tor', '', 'Lør', ''], minor=True)
+        if ndays == 30: #for longer contest show numeral ticks
+            ax.set_xticklabels(['1', '', '', '', '5', '', '', '', '', '10', '', '', '', '', '15', '', '', '', '', '20', '', '', '', '', '25', '', '', '', '', '', '31'], minor=True) 
+        elif ndays == 31:
+            ax.set_xticklabels(['1', '', '', '', '5', '', '', '', '', '10', '', '', '', '', '15', '', '', '', '', '20', '', '', '', '', '25', '', '', '', '', '', '31'], minor=True)
 
         for i in range(1, ndays, 2):
             ax.axvspan(xt[i], xt[i+1], facecolor='#000099', linewidth=0., alpha=0.03)
